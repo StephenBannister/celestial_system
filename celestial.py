@@ -59,7 +59,7 @@ class CelestialBody:
         """
         return self.name
 
-    def get_mass(self) -> int:
+    def get_mass(self) -> float:
         """
         Returns the mass of the celestial body.
 
@@ -68,7 +68,7 @@ class CelestialBody:
         """
         return self.mass
 
-    def get_distance(self) -> int:
+    def get_distance(self) -> float:
         """
         Returns the distance from the primary celestial body.
 
@@ -77,7 +77,7 @@ class CelestialBody:
         """
         return self.distance
     
-    def get_rotational(self) -> int:
+    def get_rotational(self) -> float:
         """
         Returns the rotational speed of the celestial body.
 
@@ -93,7 +93,9 @@ class CelestialBody:
         Returns:
             str: The name of the primary celestial body.
         """
-        return self.primary.name
+        if self.primary.name:
+            return self.primary.name
+        else: return "None"
     
     def add_orbiting_objects(self, objects) -> None:
         """
