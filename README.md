@@ -1,6 +1,6 @@
 # celestial_system
 A Python program that displays information about planets in our solar system
-For each planet the program holds its:
+For each planet the program holds:
 
     - Its name.
     - Which star it orbits.
