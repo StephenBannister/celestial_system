@@ -1,6 +1,7 @@
 # celestial_system
-A Python program that displays information about planets in our solar system
-For each planet the program holds:
+A Python program that displays information about planets in our solar system.
+
+For each planet the program holds details about:
 
     - Its name.
     - Which star it orbits.
@@ -18,3 +19,12 @@ A user can query the data through a Tkinter GUI driven menu by asking free text 
     - How massive is Neptune?
     - Is Pluto in the list of planets?
     - How many moons does Earth have?
+
+There are areas for further development which are currently being worked on. These are:
+
+    - Improved error handling
+    - Enhanced natural language processing
+    - Full test coverage framework
+    - Potential code optimisation and simplification
+
+At the beginning of main.py there is a list of references which were used in the development of this program.
