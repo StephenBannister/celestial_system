@@ -1,0 +1,67 @@
+[
+    {
+        "name": "Mercury",
+        "mass": 0.33,
+        "distance": 57,
+        "rotational": 3.03,
+        "fact1": "Temperatures on Mercury range from -173C (-280F) at night to 427C (800F) during the day due to its lack of atmosphere.",
+        "fact2": "Mercury is the closest planet to the Sun, with an average distance of about 58 million kilometers (36 million miles). Despite this, it isn't the hottest planet."
+    },
+    {
+        "name": "Venus",
+        "mass": 4.87,
+        "distance": 108.2,
+        "rotational": 1.81,
+        "fact1": "Venus rotates in the opposite direction to most planets, meaning the Sun rises in the west and sets in the east.",
+        "fact2": "Venus has the hottest surface in the solar system, with temperatures around 475C (900F), caused by its thick atmosphere of carbon dioxide."
+    },
+    {
+        "name": "Earth",
+        "mass": 5.97,
+        "distance": 149.6,
+        "rotational": 465.1,
+        "fact1": "Earth's crust is divided into tectonic plates that move and interact, causing earthquakes, volcanic activity, and mountain formation",
+        "fact2": "Earth is the only planet known to support life, thanks to its liquid water, breathable atmosphere, and stable climate."
+    },
+    {
+        "name": "Mars",
+        "mass": 0.642,
+        "distance": 227.9,
+        "rotational": 240.6,
+        "fact1": "Olympus Mons on Mars is the tallest volcano in the solar system, standing about 22 kilometers (13.6 miles) high.",
+        "fact2": "Mars gets its red color from iron oxide (rust) on its surface."
+
+    },
+    {
+        "name": "Jupiter",
+        "mass": 1898,
+        "distance": 778.5,
+        "rotational": 12600,
+        "fact1": "It has a giant storm called the Great Red Spot, which has been raging for at least 400 years and is larger than Earth.",
+        "fact2": "Jupiter is the largest planet in the solar system, with a diameter of about 139,820 kilometers (86,881 miles)."
+    },
+    {
+        "name": "Saturn",
+        "mass": 568,
+        "distance": 1434,
+        "rotational": 10233,
+        "fact1": "Saturn is so light for its size that it would float in water (if there were a body of water large enough!).",
+        "fact2": "Saturn is famous for its stunning ring system, made of ice and rock particles ranging in size from grains to house-sized chunks."
+    },
+    {
+        "name": "Uranus",
+        "mass": 86.8,
+        "distance": 2817,
+        "rotational": 2553,
+        "fact1": "Its blue-green color comes from methane in its atmosphere, which absorbs red light.",
+        "fact2": "Uranus rotates on its side, with an axial tilt of 98 degrees, making its seasons extreme."
+    },
+    {
+        "name": "Neptune",
+        "mass": 102,
+        "distance": 4495,
+        "rotational": 2699,
+        "fact1": "Similar to Jupiter's Great Red Spot, Neptune has a massive storm called the Great Dark Spot, which was first observed in 1989.",
+        "fact2": "Neptune has the fastest winds in the solar system, reaching speeds of up to 2,100 kilometers per hour (1,300 miles per hour)."
+    }
+]

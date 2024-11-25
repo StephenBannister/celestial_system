@@ -1,0 +1,10 @@
+{
+    "Mercury": [],
+    "Venus": [],
+    "Earth": ["The Moon"],
+    "Mars": ["Phobos", "Deimos"],
+    "Jupiter": ["Io", "Europa", "Ganymede", "Callisto"],
+    "Saturn": ["Mimas", "Enceladus", "Tethys", "Dione", "Rhea", "Titan", "Iapetus"],
+    "Uranus": ["Miranda", "Ariel", "Umbriel", "Titania", "Oberon"],
+    "Neptune": ["Triton", "Nereid", "Proteus", "Larissa"]
+}
