@@ -4,13 +4,6 @@
     - Python Discussion Forum, 2024. Deleting an object. [online] Available at: https://discuss.python.org/t/deleting-an-object/17299/2
 """
 
-""" Update Notes for git commit:
-    - modified assert tests to self.assertEqual to improve failure reporting
-    - realised I can group tests into functions, updated to reflect this optimisation
-    - changed some assert tests to CountEqual to more robustly check lists, regardless of order of elements
-    - added a couple of edge case tests for empty orbiting object properties
-    - Included tests to check correct relationships between objects
-"""
 
 import unittest
 from celestial import CelestialBody, Star, Planet, Moon
