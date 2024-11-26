@@ -47,15 +47,14 @@ class SystemMenu:
         choices = {
             1: ["tell me about", "details about a planet", "planet details", "planet info", "display planet", "show planet"],
             2: ["mass", "weight", "planet's mass"],
-            3: ["check if a planet is in the list", "check planet", "in the list", "exists"],
+            3: ["check if a planet is in the list", "check planet", "in the list", "exists", "exist"],
             4: ["moons", "how many", "how many moons", "planet's moons", "number of moons", "show number"],
             5: ["show all", "all information", "everything", "complete system", "solar system"],
             6: ["exit", "quit", "leave", "close", "bye"],
         }
 
         # Get the planet names and see if the user typed the name of one in their input
-        planet_names = [
-            name.strip() for name in self.solar_system.get_orbiting_object_names().split(",")]
+        planet_names = [name.strip() for name in self.solar_system.get_orbiting_object_names().split(",")]
         for planet in planet_names:
             if planet.lower() in user_input:
                 planet_choice = planet
@@ -64,14 +63,14 @@ class SystemMenu:
             planet_choice = None
 
         # Determine if a single word is entered by the user that is the name of a planet
-        if len(user_input.split()) < 2 and planet_choice != None:
+        if len(user_input.split()) < 2 and planet_choice is not None:
             choice = 1  # Default to the menu choice showing the information related to that planet only
             return choice, planet_choice
 
         for choice, keywords in choices.items():
             if any(keyword in user_input for keyword in keywords):
                 return choice, planet_choice
-        return None
+        return None, None
 
     def handle_choice(self, planet_choice, choice: int) -> None:
         """
@@ -115,6 +114,9 @@ class SystemMenu:
         choice, planet_choice = self.determine_menu_choice(user_input)
         if choice:
             self.entry.delete(0, tk.END)
+            
+            
+            
             self.handle_choice(planet_choice, choice)
         else:
             messagebox.showerror(
