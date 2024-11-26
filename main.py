@@ -138,7 +138,7 @@ def main() -> None:
         s = create_system(star_name)
         logging.info("Solar system created successfully")
     except Exception as e:
-        logging.critical(f"Critical error {e}")
+        logging.critical(f"Critical error creating solar system {e}")
         sys.exit(1)
         
     app = SystemMenu(s)
