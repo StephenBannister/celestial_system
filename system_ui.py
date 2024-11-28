@@ -245,13 +245,13 @@ class ShowInfo:
         self.entry = ttk.Entry(self.root, width=30)
         self.entry.pack(pady=5)
         
-        # Loop to determine if we have a planet input already and if so, display its information
+        # Determine if we have a planet input already and if so, display its information
         if self.planet_choice:
             # Automatically display the planet information
             self.get_input_and_display()
-        else:
+        #else:
             # Wait for user input and bind Submit button to get_input_and_display
-            ttk.Button(self.root, text="Submit", command=self.get_input_and_display).pack(pady=10)
+        ttk.Button(self.root, text="Submit", command=self.get_input_and_display).pack(pady=10)
         
         self.display_frame.pack(fill="both", expand=True)
 
