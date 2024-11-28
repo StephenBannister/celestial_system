@@ -73,7 +73,7 @@ class CelestialBody:
         Returns the distance from the primary celestial body.
 
         Returns:
-            int: The distance from the primary celestial body.
+            float: The distance from the primary celestial body.
         """
         return self.distance
     
@@ -82,7 +82,7 @@ class CelestialBody:
         Returns the rotational speed of the celestial body.
 
         Returns:
-            int: The rotational speed of the celestial body.
+            float: The rotational speed of the celestial body.
         """
         return self.rotational
     
@@ -202,7 +202,13 @@ class Planet(CelestialBody):
         Returns:
             str: The planet's details and fun facts.
         """
-        return f"My name is {self.get_name()}, my mass is {self.get_mass()}e+24 kg, my distance from the Sun is {self.get_distance()} million km, I rotate at {self.get_rotational} m/s, I orbit {self.get_primary()} and I have {self.get_num_orbiting_objects()} orbiting objects: {self.get_orbiting_object_names()}\n2 facts about me are: {self.get_planet_facts()}"
+        return (
+            f"My name is {self.get_name()}, my mass is {self.get_mass()}e+24 kg, "
+            f"my distance from the Sun is {self.get_distance()} million km, I rotate at "
+            f"{self.get_rotational()} m/s, I orbit {self.get_primary()} and I have "
+            f"{self.get_num_orbiting_objects()} orbiting objects: {self.get_orbiting_object_names()}."
+            f"2 facts about me are: {self.get_planet_facts()}"
+        )
 
     def get_planet_fact1(self) -> str:
         """
@@ -229,7 +235,9 @@ class Planet(CelestialBody):
         Returns:
             str: The combined fun facts.
         """
-        return f"\n{self.fact1}\n{self.fact2}"
+        return (f"{self.fact1} "
+                f"{self.fact2}"
+        )
 
 
 class Moon(CelestialBody):
