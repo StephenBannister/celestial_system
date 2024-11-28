@@ -231,6 +231,8 @@ class ShowInfo:
                 return
         ttk.Label(self.display_frame, text="Planet can't be found, please try again.",
                           font=("Arial", 12)).pack(pady=50)
+        self.planet_choice = None # reset the entry for the next input
+        self.entry.delete(0, tk.END) # Clear the entry input box
 
     def set_display_area(self) -> None:
         """
