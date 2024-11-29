@@ -22,16 +22,16 @@ class CelestialBody:
         get_orbiting_object_names(): Returns a comma-separated string of orbiting object names.
     """
 
-    def __init__(self, name, primary=None, mass=0, distance=0, rotational=0, orbiting_objects=None) -> None:
+    def __init__(self, name, primary=None, mass=0.0, distance=0.0, rotational=0.0, orbiting_objects=None) -> None:
         """
         Initializes a celestial body with the given attributes.
 
         Args:
             name (str): The name of the celestial body.
             primary (CelestialBody, optional): The celestial body this object orbits. Defaults to None.
-            mass (int): The mass of the celestial body. Defaults to 0.
-            distance (int): The distance from its primary. Defaults to 0.
-            rotational (int): The rotational speed. Defaults to 0.
+            mass (int): The mass of the celestial body. Defaults to 0.0.
+            distance (int): The distance from its primary. Defaults to 0.0.
+            rotational (int): The rotational speed. Defaults to 0.0.
             orbiting_objects (list, optional): A list of orbiting objects. Defaults to an empty list.
         """
         self.name = name
@@ -64,7 +64,7 @@ class CelestialBody:
         Returns the mass of the celestial body.
 
         Returns:
-            int: The mass of the celestial body.
+            float: The mass of the celestial body.
         """
         return self.mass
 
@@ -178,16 +178,16 @@ class Planet(CelestialBody):
         get_planet_facts(): Returns both fun facts.
     """
 
-    def __init__(self, primary=None, name="Unnamed", mass=0, distance=0, rotational=0, f1="", f2="") -> None:
+    def __init__(self, primary=None, name="Unnamed", mass=0.0, distance=0.0, rotational=0.0, f1="", f2="") -> None:
         """
         Initializes a Planet with specific attributes.
 
         Args:
             primary (CelestialBody, optional): The celestial body the planet orbits. Defaults to None.
             name (str): The name of the planet. Defaults to "Unnamed".
-            mass (int): The mass of the planet. Defaults to 0.
-            distance (int): The distance from the Sun. Defaults to 0.
-            rotational (int): The rotational speed of the planet. Defaults to 0.
+            mass (int): The mass of the planet. Defaults to 0.0.
+            distance (int): The distance from the Sun. Defaults to 0.0.
+            rotational (int): The rotational speed of the planet. Defaults to 0.0.
             f1 (str): The first fun fact about the planet. Defaults to an empty string.
             f2 (str): The second fun fact about the planet. Defaults to an empty string.
         """
