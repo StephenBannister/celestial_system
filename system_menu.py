@@ -30,7 +30,7 @@ class SystemMenu:
         self.solar_system = solar_system
         self.root = tk.Tk()
         self.root.title("Solar System Menu")
-        self.root.geometry("500x400")
+        self.root.geometry("650x400")
         self.create_widgets()
 
     def determine_menu_choice(self, user_input: str) -> str | None:
@@ -45,14 +45,14 @@ class SystemMenu:
         """
         user_input = user_input.lower()
         choices = {
-            1: ["tell me about", "details about a planet", "planet details", "planet info", "display planet", "show planet"],
-            2: ["mass", "weight", "planet's mass"],
-            3: ["check if a planet is in the list", "check planet", "in the list", "exists", "exist"],
+            1: ["tell me about", "details about", "planet details", "planet info", "display planet", "show planet"],
+            2: ["mass", "weight", "heavy", "weigh"],
+            3: ["check planet", "in the list", "exists", "exist", "list of planets", "in list", "a planet"],
             4: ["moons", "how many", "how many moons", "planet's moons", "number of moons", "show number"],
-            5: ["show all", "all information", "everything", "complete system", "solar system"],
+            5: ["show all", "all information", "all info", "everything", "complete system", "solar system"],
             6: ["exit", "quit", "leave", "close", "bye"],
         }
-
+        
         # Get the planet names and see if the user typed the name of one in their input
         planet_names = [name.strip() for name in self.solar_system.get_orbiting_object_names().split(",")]
         for planet in planet_names:
@@ -114,9 +114,6 @@ class SystemMenu:
         choice, planet_choice = self.determine_menu_choice(user_input)
         if choice:
             self.entry.delete(0, tk.END)
-            
-            
-            
             self.handle_choice(planet_choice, choice)
         else:
             messagebox.showerror(
@@ -130,24 +127,33 @@ class SystemMenu:
         frame = ttk.Frame(self.root, padding=20)
         frame.pack(fill="both", expand=True)
 
-        ttk.Label(frame, text="********** WELCOME **********",
+        ttk.Label(frame, text="WELCOME TO THE CELESTIAL SYSTEM",
                   font=("Arial", 14, "bold")).pack(pady=10)
-        ttk.Label(frame, text="Please type what you're after:",
+        ttk.Label(frame, text="Here you can discover many things about our solar system",
+                  font=("Arial", 12)).pack(pady=10)
+        ttk.Label(frame, text="Please type what you'd like to see:",
                   font=("Arial", 12)).pack(pady=5)
         self.entry = ttk.Entry(frame, width=50)
         self.entry.pack(pady=5)
+        
+        # Automatically focus the cursor in the entry field
+        self.entry.focus()
+    
+        # Bind the Enter key to submit the input
+        self.root.bind("<Return>", lambda event: self.process_input())
+        
         ttk.Button(frame, text="Submit",
                    command=self.process_input).pack(pady=10)
         ttk.Label(frame, text="You can say things like:",
                   font=("Arial", 12)).pack(pady=5)
-        ttk.Label(frame, text="'tell me about Earth'",
+        ttk.Label(frame, text="'tell me about Earth' or 'show planet jupiter'",
                   font=("Arial", 10)).pack(pady=2)
-        ttk.Label(frame, text="'Venus planet details'",
+        ttk.Label(frame, text="'What is the mass of Venus' or 'is Pluto in the list'",
                   font=("Arial", 10)).pack(pady=2)
-        ttk.Label(frame, text="'show all'", font=("Arial", 10)).pack(pady=2)
-        ttk.Label(frame, text="'exit'", font=("Arial", 10)).pack(pady=2)
-
-        # ttk.Button(frame, text="Exit", command=self.root.destroy).pack(pady=10)
+        ttk.Label(frame, text="'How many moons does Saturn have' or 'Neptune's Moons'",
+                  font=("Arial", 10)).pack(pady=2)
+        ttk.Label(frame, text="'show all' or 'tell me everything'", font=("Arial", 10)).pack(pady=2)
+        ttk.Label(frame, text="'exit' or 'bye' - if you don't want to learn anymore 🥺", font=("Arial", 10)).pack(pady=2)
 
     def run(self) -> None:
         """
