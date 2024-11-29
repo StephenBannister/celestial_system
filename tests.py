@@ -12,11 +12,9 @@
 '''
 
 import unittest
-import tkinter as tk
-from unittest.mock import MagicMock, patch
+from unittest.mock import MagicMock
 from celestial import CelestialBody, Star, Planet, Moon
 from system_menu import SystemMenu
-from system_ui import ShowSystemAll
 from main import load_json_data
 
 
@@ -147,43 +145,43 @@ class MenuSystemTest(unittest.TestCase):
         
     
   # ---------------- Menu Choice NLP and Logic ------------------  
-        #Test Plan Reference: Menu_001
+    #Test Plan Reference: Menu_001
     def test_check_menu_choice_valid_sentence_is_all_planet_info(self):
         choice, planet_choice = self.menu.determine_menu_choice("tell me about Mars")
         self.assertEqual (choice, 1)
         self.assertEqual (planet_choice, "Mars")
         
-        #Test Plan Reference: Menu_002
+    #Test Plan Reference: Menu_002
     def test_check_menu_choice_valid_word_is_all_planet_info(self):
         choice, planet_choice = self.menu.determine_menu_choice("venus")
         self.assertEqual (choice, 1)
         self.assertEqual (planet_choice, "Venus")
         
-        #Test Plan Reference: Menu_003
+    #Test Plan Reference: Menu_003
     def test_check_menu_choice_valid_sentence_is_planet_mass(self):
         choice, planet_choice = self.menu.determine_menu_choice("What is the mass of mars")
         self.assertEqual (choice, 2)
         self.assertEqual (planet_choice, "Mars")
         
-        #Test Plan Reference: Menu_004
+    #Test Plan Reference: Menu_004
     def test_check_menu_choice_valid_sentence_is_planet_exists(self):
         choice, planet_choice = self.menu.determine_menu_choice("does earth exist")
         self.assertEqual (choice, 3)
         self.assertEqual (planet_choice, "Earth")
         
-        #Test Plan Reference: Menu_005
+    #Test Plan Reference: Menu_005
     def test_check_menu_choice_valid_sentence_how_many_moons(self):
         choice, planet_choice = self.menu.determine_menu_choice("how many moons does earth have")
         self.assertEqual (choice, 4)
         self.assertEqual (planet_choice, "Earth")
         
-        #Test Plan Reference: Menu_006
+    #Test Plan Reference: Menu_006
     def test_check_menu_choice_valid_sentence_show_all(self):
         choice, planet_choice = self.menu.determine_menu_choice("tell me everything")
         self.assertEqual (choice, 5)
         self.assertEqual (planet_choice, None)
         
-          #Test Plan Reference: Menu_007  
+    #Test Plan Reference: Menu_007  
     def test_check_menu_choice_valid_non_matched_input(self):
         choice, planet_choice = self.menu.determine_menu_choice("this is unmatched")
         self.assertIsNone(choice, None)
