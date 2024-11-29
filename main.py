@@ -26,6 +26,8 @@ Key references used in the coding of this application:
     - W3Schools, 2024. Python Exceptions. [online] Available at: https://www.w3schools.com/python/python_ref_exceptions.asp
     - GeeksforGeeks, 2024. JSON parsing errors in Python. [online] Available at: https://www.geeksforgeeks.org/json-parsing-errors-in-python/
     - Python Software Foundation, 2024. logging — Logging facility for Python. [online] Available at: https://docs.python.org/3/library/logging.html
+    - Stack Overflow, 2024. How do I bind the Enter key to a function in Tkinter?. [online] Available at: https://stackoverflow.com/questions/16996432/how-do-i-bind-the-enter-key-to-a-function-in-tkinter
+    - Stack Overflow, 2024. How do I set focus to an Entry widget from a function?. [online] Available at: https://stackoverflow.com/questions/20792183/how-do-i-set-focus-to-an-entry-widget-from-a-function
     
 """
 
@@ -45,7 +47,7 @@ def load_json_data(filename: str) -> Any:
         filename (str): The path to the JSON file.
 
     Returns:
-        Any: The parsed JSON data.
+        Any: The read JSON data.
     """
 
     try:
@@ -65,19 +67,19 @@ def load_json_data(filename: str) -> Any:
 # ------------------- Solar System Creation ----------------
 
 
-def create_planets(s: Star) -> None:
+def create_planets(star: Star) -> None:
     """
     Create planet objects from JSON data and add them to the solar system.
 
     Args:
-        s (Star): The star object representing the solar system.
+        star (Star): The star object representing the solar system.
     """
     try:
         filename = "planets.json"
         planet_data = load_json_data(filename)
-        planets = [Planet(s, name=item["name"], mass=item["mass"], distance=item["distance"],
+        planets = [Planet(star, name=item["name"], mass=item["mass"], distance=item["distance"],
                         rotational=item['rotational'], f1=item["fact1"], f2=item["fact2"],) for item in planet_data]
-        s.add_orbiting_objects(planets)
+        star.add_orbiting_objects(planets)
     except (KeyError, TypeError) as e:
         logging.error(f"Error in {filename} data structure: {e}")
         raise ValueError(f"Invalid planet in data structure in {filename}")
@@ -86,17 +88,17 @@ def create_planets(s: Star) -> None:
         raise
                  
 
-def create_moons(s: Star) -> None:
+def create_moons(star: Star) -> None:
     """
     Create moon objects from JSON data and associate them with their respective planets.
 
     Args:
-        s (Star): The star object representing the solar system.
+        star (Star): The star object representing the solar system.
     """
     try:
         filename = "moons.json"
         moon_data = load_json_data(filename)
-        for planet in s.get_orbiting_objects():
+        for planet in star.get_orbiting_objects():
                 moon_names = moon_data.get(planet.get_name(), [])
                 planet.add_orbiting_objects([Moon(name, planet)
                                         for name in moon_names])
@@ -118,10 +120,10 @@ def create_system(star_name: str) -> Star:
         Star: The star object representing the solar system.
     """
 
-    s = Star(name=star_name)
-    create_planets(s)
-    create_moons(s)
-    return s
+    star = Star(name=star_name)
+    create_planets(star)
+    create_moons(star)
+    return star
 
 # ------------------- Main ----------------
 
@@ -129,19 +131,20 @@ def create_system(star_name: str) -> Star:
 def main() -> None:
     """
     Initialize the solar system and run the application menu.
+    
     """
     
     logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
     try:
         star_name = "Sol"
-        s = create_system(star_name)
+        star = create_system(star_name)
         logging.info("Solar system created successfully")
     except Exception as e:
         logging.critical(f"Critical error creating solar system {e}")
         sys.exit(1)
         
-    app = SystemMenu(s)
+    app = SystemMenu(star)
     app.run()
 
         
