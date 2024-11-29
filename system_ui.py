@@ -1,5 +1,5 @@
 import tkinter as tk
-from tkinter import ttk, messagebox
+from tkinter import ttk
 
 
 class PlanetCard:
@@ -46,7 +46,8 @@ class PlanetCard:
         for text in self.labels:
             if text[:10] == "Moon names" and self.planet.get_num_orbiting_objects() == 0:
                 continue  # Skip showing "Moon Names" if there are no moons
-            ttk.Label(self.card, text=text, wraplength=650, justify="left").pack(anchor="w", pady=2)
+            ttk.Label(self.card, text=text, wraplength=650,
+                      justify="left").pack(anchor="w", pady=2)
 
 
 class ScrollableFrame:
@@ -74,7 +75,8 @@ class ScrollableFrame:
         self.root = root
         self.frame = ttk.Frame(self.root)
         self.canvas = tk.Canvas(self.frame)
-        self.scrollbar = ttk.Scrollbar(self.frame, orient="vertical", command=self.canvas.yview)
+        self.scrollbar = ttk.Scrollbar(
+            self.frame, orient="vertical", command=self.canvas.yview)
         self.scrollable_frame = ttk.Frame(self.canvas)
 
     def create_sf(self) -> None:
@@ -83,9 +85,11 @@ class ScrollableFrame:
         """
         self.scrollable_frame.bind(
             "<Configure>",
-            lambda e: self.canvas.configure(scrollregion=self.canvas.bbox("all")),
+            lambda e: self.canvas.configure(
+                scrollregion=self.canvas.bbox("all")),
         )
-        self.canvas.create_window((0, 0), window=self.scrollable_frame, anchor="nw")
+        self.canvas.create_window(
+            (0, 0), window=self.scrollable_frame, anchor="nw")
         self.canvas.configure(yscrollcommand=self.scrollbar.set)
 
         self.frame.pack(fill="both", expand=True)
@@ -113,10 +117,18 @@ class ClearFrame:
         """
         self.frame = frame
 
+    # def clear_frame(self) -> None:
+    #     """
+    #     Clears all widgets from the frame.
+    #     """
+    #     for widget in self.frame.winfo_children():
+    #         widget.destroy()
+
     def clear_frame(self) -> None:
         """
         Clears all widgets from the frame.
         """
+
         for widget in self.frame.winfo_children():
             widget.destroy()
 
@@ -157,7 +169,8 @@ class ShowSystemAll:
             planet_card = PlanetCard(sf.scrollable_frame, planet)
             planet_card.create_labels()
 
-        ttk.Button(self.root, text="Close", command=lambda: self.root.destroy()).pack(pady=5, anchor="nw")
+        ttk.Button(self.root, text="Close", command=lambda: self.root.destroy()).pack(
+            pady=5, anchor="nw")
 
 
 class ShowInfo:
@@ -197,15 +210,16 @@ class ShowInfo:
         Gets the user input for a planet name and displays the relevant information.
         """
         self.cf.clear_frame()
-        
+
         # We check to see if a planet was entered in the menu input and gather input if not
         if not self.planet_choice:
             user_input = self.entry.get().strip()
             if not user_input:
-                ttk.Label(self.display_frame, text="Please enter a valid planet name.", font=("Arial", 12)).pack(pady=50)
+                ttk.Label(self.display_frame, text="Please enter a valid planet name.", font=(
+                    "Arial", 12)).pack(pady=50)
                 return
             self.planet_choice = user_input.capitalize()
-        
+
         # Use the 'message' variable from the menu to drive the appropriate display
         for planet in self.solar_system.get_orbiting_objects():
             if planet.get_name() == self.planet_choice:
@@ -225,14 +239,16 @@ class ShowInfo:
                     else:
                         ttk.Label(self.display_frame, text=f"{planet.get_name()} has no moons.",
                                   font=("Arial", 12)).pack(pady=50)
-        
-                self.planet_choice = None # reset the entry for the next input
-                self.entry.delete(0, tk.END) # Clear the entry input box
+
+                self.planet_choice = None  # reset the entry for the next input
+                self.entry.delete(0, tk.END)  # Clear the entry input box
                 return
-        ttk.Label(self.display_frame, text="Planet can't be found, please try again.",
-                          font=("Arial", 12)).pack(pady=50)
-        self.planet_choice = None # reset the entry for the next input
-        self.entry.delete(0, tk.END) # Clear the entry input box
+        ttk.Label(self.display_frame, text="Planet can't be found.",
+                              font=("Arial", 12)).pack(pady=50)
+        ttk.Label(self.display_frame, text="Please try again, or close back to main menu.",
+                              font=("Arial", 12)).pack(pady=5)
+        self.planet_choice = None  # reset the entry for the next input
+        self.entry.delete(0, tk.END)  # Clear the entry input box
 
     def set_display_area(self) -> None:
         """
@@ -242,19 +258,37 @@ class ShowInfo:
         self.root.geometry("700x450")
 
         ttk.Label(self.root, text="Enter the name of a planet:",
-                   font=("Arial", 12)).pack(pady=10)
-        
+                  font=("Arial", 12)).pack(pady=10)
+
         self.entry = ttk.Entry(self.root, width=30)
         self.entry.pack(pady=5)
-        
-        # Determine if we have a planet input already and if so, display its information
+
+        # Automatically focus the cursor in the entry field
+        self.entry.focus()
+
+        # Bind the Enter key to submit the input
+        self.root.bind("<Return>", lambda event: self.get_input_and_display())
+
+        # Determine if menu option 3 has been triggered by the users' input
+        if self.message == "3":
+            print("menu option 3 chosen")
+            # Determine if we have a planet input already and if so, display its information    
+            if not self.planet_choice:
+            # display a message stating the planet doesn't exist
+                ttk.Label(self.display_frame, text="Planet can't be found.",
+                              font=("Arial", 12)).pack(pady=50)
+                ttk.Label(self.display_frame, text="Please try again, or close back to main menu.",
+                              font=("Arial", 12)).pack(pady=5)
+
+        # Determine if we have a planet input already and if so, display its information    
         if self.planet_choice:
             # Automatically display the planet information
             self.get_input_and_display()
-        #else:
-            # Wait for user input and bind Submit button to get_input_and_display
-        ttk.Button(self.root, text="Submit", command=self.get_input_and_display).pack(pady=10)
-        
+
+        # Wait for user input and bind Submit button to get_input_and_display
+        ttk.Button(self.root, text="Submit",
+                   command=self.get_input_and_display).pack(pady=10)
+
         self.display_frame.pack(fill="both", expand=True)
 
         ttk.Button(self.root, text="Close", command=lambda: self.root.destroy()).pack(
